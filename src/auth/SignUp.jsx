@@ -9,7 +9,7 @@ export default function SignupPage() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((fd) => ({ ...fd, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
