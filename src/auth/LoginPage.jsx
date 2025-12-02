@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import SignupPage from "./SignupPage";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -94,9 +96,9 @@ export default function LoginPage() {
         {/* Footer */}
         <p className="mt-6 text-center text-sm text-yellow-200">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-yellow-400 hover:underline">
+          <Link to="/" className="text-yellow-400 hover:underline">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
