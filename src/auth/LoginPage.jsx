@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SignupPage from "./SignupPage";
+import { BASE_URL } from "../config";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -19,10 +20,7 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://backend-prac-drt3.onrender.com/v1/auth/login",
-        formData
-      );
+      const response = await axios.post(`${BASE_URL}/v1/auth/login`, formData);
       console.log("Login success:", response.data);
 
       if (response.data.token) {

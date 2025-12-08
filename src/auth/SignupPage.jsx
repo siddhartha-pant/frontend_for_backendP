@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { BASE_URL } from "../config";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -15,15 +16,11 @@ export default function SignupPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://backend-prac-drt3.onrender.com/v1/auth/signup",
-        formData
-      );
+      const response = await axios.post(`${BASE_URL}/v1/auth/signup`, formData);
       console.log("Signup success:", response.data);
       alert("User registered successfully!");
     } catch (error) {
       console.error("Signup error:", error);
-      alert("Signup failed. Please try again.");
     }
   };
 
@@ -35,23 +32,23 @@ export default function SignupPage() {
         </h2>
 
         <form className="space-y-5" onSubmit={handleSubmit}>
-          {/* Username */}
+          {/* name */}
           <div>
             <label
-              htmlFor="username"
+              htmlFor="name"
               className="block text-sm font-medium text-yellow-300"
             >
-              Username
+              name
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               required
               className="mt-1 w-full px-4 py-2 border border-yellow-400 rounded-lg bg-black text-yellow-100 placeholder-gray-500 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-              placeholder="Enter username"
+              placeholder="Enter name"
             />
           </div>
 
