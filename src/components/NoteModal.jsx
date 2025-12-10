@@ -4,7 +4,6 @@ function NoteModal({ onClose, onSave, initialNote }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  // Prefill values if editing an existing note
   useEffect(() => {
     if (initialNote) {
       setTitle(initialNote.title);

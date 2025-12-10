@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import SignupPage from "./SignupPage";
+import { Link, useNavigate } from "react-router-dom"; // ✅ import useNavigate
 import { BASE_URL } from "../config";
 
 export default function LoginPage() {
@@ -9,6 +8,8 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate(); // ✅ create navigate hook
 
   const handleChange = (e) => {
     setFormData((fd) => ({
@@ -23,11 +24,13 @@ export default function LoginPage() {
       const response = await axios.post(`${BASE_URL}/v1/auth/login`, formData);
       console.log("Login success:", response.data);
 
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-      }
+      if (response.data.data?.token) {
+        localStorage.setItem("token", response.data.data?.token);
+        alert("Login successful!");
 
-      alert("Login successful!");
+        console.log("dashboard k uppar");
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.error("Login error:", error);
       alert("Login failed. Please check your credentials.");
@@ -94,7 +97,7 @@ export default function LoginPage() {
         {/* Footer */}
         <p className="mt-6 text-center text-sm text-yellow-200">
           Don’t have an account?{" "}
-          <Link to="/" className="text-yellow-400 hover:underline">
+          <Link to="/signup" className="text-yellow-400 hover:underline">
             Sign up
           </Link>
         </p>
